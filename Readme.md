@@ -9,7 +9,7 @@ Human Activity Recognition system plays an important role in many application, i
 
 ## Dataset Information
 * The public dataset: 
-[WISDM] (https://www.cis.fordham.edu/wisdm/dataset.php) collected data from a smartphone in front pants leg pocket with sampling frequency of 20 Hz. Dataset was collected from 29 participants performing 6 activities.
+WISDM (https://www.cis.fordham.edu/wisdm/dataset.php) collected data from a smartphone in front pants leg pocket with sampling frequency of 20 Hz. Dataset was collected from 29 participants performing 6 activities.
 
 * Our recorded data: Our waist-worn device got data from accelerometer with sampling frequency of 50 Hz  and transfered data to a smartphone with Android operating system. A group of 16 volunteers (14 students and 2 older adults) conducted data recording for 4 activities. 
   
