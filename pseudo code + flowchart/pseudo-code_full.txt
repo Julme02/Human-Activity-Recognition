@@ -1,0 +1,121 @@
+
+Initialize
+ADXL345 adxl;
+
+MEAN_ELEMENT
+	Initialize array a
+	set sum <- 0
+	FOR i <-1 to N
+		sum = sum + a[i]
+	ENDFOR
+	mean <- sum/n
+END
+
+RANGE_ELEMENT
+	Initialize array a
+	set sum <- 0, max <- a[0], min <-  a[0]
+	FOR i <-1 to N
+		IF (a[i] >= max) THEN
+			max = a[i];
+		IF (a[i] <= min) THEN
+			min = a[i];
+	ENDFOR
+	range = abs (max - min);
+END
+
+STD_ELEMENT
+	Initialize array a
+	set sum_mean <- 0, sum_std <- 0
+	FOR i <-1 to N
+		sum = sum + a[i]
+	ENDFOR
+	mean <- sum/n
+	
+	FOR i <-1 to N
+		sum_std += (a[i]-mean) * (a[i]-mean)
+	ENDFOR
+	std <- sqrt(sum_std/n);
+END
+
+RMS_ELEMENT
+	Initialize array a
+	set sum <- 0
+	FOR i <-1 to N
+		sum = sum + a[i]* a[i]
+	ENDFOR
+	rms <- sqrt(sum/n)
+END
+
+SETUP:
+ 	Set activity/ inactivity threshold 
+	Set activity/ inactivity/ tap detection on axes
+	Set value for tap and double tap
+	Set value Free-fall threshold and duration
+	Set interrupt 
+  	
+LOOP
+	Initialize array acc[3];
+	Initialize array ax[6], ay[6], az[6];
+	set i <- 1;
+	
+	WHILE (i<=6)
+   		adxl.getAcceleration(acc); //read acc values and store  in variables acc
+    		ax[i] = acc[0];
+    		ay[i] = acc[1];
+   		az[i] = acc[2];
+
+		IF (i==6) THEN
+			mean_x = Mean(ax,6);
+			mean_y = Mean(ay,6);
+      			mean_z = Mean(az,6);
+			range_z = Range(az,6);
+      			std_y = Std(ay,6);
+			rms_x = RMS (ax,6);
+			rms_y = RMS (ay,6);
+
+			IF (mean_x <= -0.006) THEN
+				IF(mean_y <= 0.845) THEN
+					IF (range_z <= 3.339) THEN
+						IF (std_y <= 0.413) THEN
+							print ("Walking") 
+						ELSE 
+							print ("Running")
+						ENDIF
+					ELSE 
+						print ("Running")
+					ENDIF
+
+##				IF(!(mean_y <= 0.845 AND range_z <= 3.339)) THEN
+##					print ("Running")
+##				ELSE
+##					print ("Walking")
+
+				ELSE 
+					IF (rms_y <= 0.922) THEN
+						print ("Sitting")
+					ELSE
+						print ("Running")
+					ENDIF
+				ENDIF
+			ELSE
+				IF (mean_z <= 1.008) THEN
+					IF (rms_x <= 0.073) THEN 
+						print ("Standing")
+					ELSE 
+						print ("Walking")
+					ENDIF
+				ELSE
+					print ("Walking")
+				ENDIF
+
+##				IF(!(mean_z <= 1.008 AND rms_x <= 0.073)) THEN
+##					print ("Walking")
+##				ELSE
+##					print ("Standing")
+
+			ENDIF
+		ENDIF;
+		 i <- i +1;
+    		Delay for 1000 ms
+	ENDWHILE;
+		

@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="mean_x <= -0.006\nsamples = 774\nvalue = [311, 231, 72, 160]\nclass = Standing", fillcolor="#fbece2"] ;
+1 [label="mean_y <= 0.845\nsamples = 453\nvalue = [0, 231, 72, 150]\nclass = Sitting", fillcolor="#cef8ca"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="std_y <= 0.413\nsamples = 221\nvalue = [0, 0, 71, 150]\nclass = Walking", fillcolor="#ea97f1"] ;
+1 -> 2 ;
+3 [label="range_z <= 3.356\nsamples = 156\nvalue = [0, 0, 6, 150]\nclass = Walking", fillcolor="#d941e6"] ;
+2 -> 3 ;
+4 [label="samples = 152\nvalue = [0, 0, 2, 150]\nclass = Walking", fillcolor="#d83ce5"] ;
+3 -> 4 ;
+5 [label="samples = 4\nvalue = [0, 0, 4, 0]\nclass = Running", fillcolor="#399de5"] ;
+3 -> 5 ;
+6 [label="samples = 65\nvalue = [0, 0, 65, 0]\nclass = Running", fillcolor="#399de5"] ;
+2 -> 6 ;
+7 [label="mean_z <= 0.245\nsamples = 232\nvalue = [0, 231, 1, 0]\nclass = Sitting", fillcolor="#48e53a"] ;
+1 -> 7 ;
+8 [label="samples = 231\nvalue = [0, 231, 0, 0]\nclass = Sitting", fillcolor="#47e539"] ;
+7 -> 8 ;
+9 [label="samples = 1\nvalue = [0, 0, 1, 0]\nclass = Running", fillcolor="#399de5"] ;
+7 -> 9 ;
+10 [label="mean_z <= 1.008\nsamples = 321\nvalue = [311, 0, 0, 10]\nclass = Standing", fillcolor="#e6853f"] ;
+0 -> 10 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+11 [label="rms_x <= 0.073\nsamples = 312\nvalue = [311, 0, 0, 1]\nclass = Standing", fillcolor="#e5813a"] ;
+10 -> 11 ;
+12 [label="samples = 311\nvalue = [311, 0, 0, 0]\nclass = Standing", fillcolor="#e58139"] ;
+11 -> 12 ;
+13 [label="samples = 1\nvalue = [0, 0, 0, 1]\nclass = Walking", fillcolor="#d739e5"] ;
+11 -> 13 ;
+14 [label="samples = 9\nvalue = [0, 0, 0, 9]\nclass = Walking", fillcolor="#d739e5"] ;
+10 -> 14 ;
+}

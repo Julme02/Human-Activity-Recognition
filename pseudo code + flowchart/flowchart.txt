@@ -1,0 +1,67 @@
+
+Initialize
+ADXL345 adxl;
+
+SETUP:
+ 	Set activity/ inactivity threshold 
+	Set activity/ inactivity/ tap detection on axes
+	Set value for tap and double tap
+	Set value Free-fall threshold and duration
+	Set interrupt 
+  	
+LOOP
+	Initialize array acc[];
+	set i <- 1;
+	
+	WHILE (i<=6)
+   		read acc values and store  in variables acc
+		
+		IF (i==6) THEN
+			Calculate statistics value from 3 axes
+
+			IF (mean_x <= -0.006) THEN
+				IF(mean_y <= 0.845) THEN
+					IF (range_z <= 3.339) THEN
+						IF (std_y <= 0.413) THEN
+							print ("Walking") 
+						ELSE 
+							print ("Running")
+						ENDIF
+					ELSE 
+						print ("Running")
+					ENDIF
+
+##				IF(!(mean_y <= 0.845 AND range_z <= 3.339)) THEN
+##					print ("Running")
+##				ELSE
+##					print ("Walking")
+
+				ELSE 
+					IF (rms_y <= 0.922) THEN
+						print ("Sitting")
+					ELSE
+						print ("Running")
+					ENDIF
+				ENDIF
+			ELSE
+				IF (mean_z <= 1.008) THEN
+					IF (rms_x <= 0.073) THEN 
+						print ("Standing")
+					ELSE 
+						print ("Walking")
+					ENDIF
+				ELSE
+					print ("Walking")
+				ENDIF
+
+##				IF(!(mean_z <= 1.008 AND rms_x <= 0.073)) THEN
+##					print ("Walking")
+##				ELSE
+##					print ("Standing")
+
+			ENDIF
+		ENDIF;
+		 i <- i +1;
+    		Delay for 1000 ms
+	ENDWHILE;
+		
