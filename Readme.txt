@@ -1,47 +1,27 @@
- ## Low-cost Real-time Human Activity Recognition System Based on Wearable Sensor and the Supervised Learning Algorithms 
+ # A Low-cost Real-time Human Activity Recognition System Based on Wearable Sensor and the Supervised Learning Algorithms 
 	
-### Abstract: 
-The dataset collects data from a wearable accelerometer mounted on the chest. Uncalibrated Accelerometer Data are collected from 15 participants performing 7 activities. The dataset is intended for Activity Recognition research purposes. It provides challenges for identification and authentication of people using motion patterns.
 
-3. Relevant Information:
-   --- The dataset collects data from a wearable accelerometer mounted on the chest
-   --- Sampling frequency of the accelerometer: 52 Hz
-   --- Accelerometer Data are Uncalibrated
-   --- Number of Participants: 15
-   --- Number of Activities: 7
-   --- Data Format: CSV
-
-4. Dataset Information
-   --- Data are separated by participant
-   --- Each file contains the following information
-       ---- sequential number, x acceleration, y acceleration, z acceleration, label 
-   --- Labels are codified by numbers
-       --- 1: Standing
-       --- 2: Sitting
-       --- 3: Jogging
-       --- 4: Walking
-       
-5. Reference Papers
-
-   --- Casale, P. Pujol, O. and Radeva, P. 
-       "BeaStreamer-v0.1: a new platform for Multi-Sensors Data Acquisition in Wearable Computing Applications", 
-       CVCRD09, ISBN: 978-84-937261-1-9, 2009
-       available on https://www.researchgate.net/publication/257132489_BeaStreamer-v0.1_a_new_platform_for_Multi-Sensors_Data_Acquisition_in_Wearable_Computing_Applications?ev=prf_pub
-
-   --- Casale, P. Pujol, O. and Radeva, P. 
-       "Human activity recognition from accelerometer data using a wearable device", 
-       IbPRIA'11, 289-296, Springer-Verlag, 2011
-       available on https://www.researchgate.net/publication/221258784_Human_Activity_Recognition_from_Accelerometer_Data_Using_a_Wearable_Device?ev=prf_pub
-       
-
-### Table results
+### ** Abstract **
+Human Activity Recognition system plays an important role in many application, including the healthcare field. This implementation uses machine learning algorithms based on the data from the accelerometer gives good recognition results. Therefore, designing low-cost, high recognition rate and real-time system is necessary.
 
 
+### ** Dataset Information **
+* The public dataset: 
+[WISDM] (https://www.cis.fordham.edu/wisdm/dataset.php) collected data from a smartphone in front pants leg pocket with sampling frequency of 20 Hz. Dataset was collected from 29 participants performing 6 activities.
+
+* Our recorded data: Our waist-worn device got data from accelerometer with sampling frequency of 50 Hz  and transfered data to a smartphone with Android operating system. A group of 16 volunteers (14 students and 2 older adults) conducted data recording for 4 activities. 
+  
+
+### ** Method **
+First, dataset was collected from our proposed device in three axes Ax, Ay, Az. Then, we conducted windowing step, divided data stream into small segment and deployed sliding window. In each segment, statistical features extraction created vector carrying behavioral information. Last, the features selected would be trained to build classification model to classify behaviors.
+
+
+### ** Table results **
 | Evaluation Method   | Public dataset | Private dataset |
-| :------------:      | :------------: | :-------------: |
-| Accuracy            |          	|   		|
-| Sensitive           |         	|   		|
-| Positive Predictive |         	|   		|
+| :------------: | :------------: | :-------------: |
+| Accuracy    | 95.3% | 99.2% |
+| Sensitivity  | 94% | 98.5% |
+
 
 
 
